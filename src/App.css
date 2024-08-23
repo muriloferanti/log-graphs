@@ -197,7 +197,7 @@ body {
 }
 
 .menu-toggle-btn.open .icon-bar:nth-child(1) {
-  transform: rotate(45deg) translate(-4px, 5px);
+  transform: rotate(45deg) translate(-6px, 3px);
 }
 
 .menu-toggle-btn.open .icon-bar:nth-child(2) {
@@ -205,7 +205,7 @@ body {
 }
 
 .menu-toggle-btn.open .icon-bar:nth-child(3) {
-  transform: rotate(-45deg) translate(-4px, -5px);
+  transform: rotate(-45deg) translate(7px, -16px);
 }
 
 @media (max-width: 768px) {
