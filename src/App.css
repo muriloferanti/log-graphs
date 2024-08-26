@@ -208,6 +208,85 @@ body {
   transform: rotate(-45deg) translate(7px, -16px);
 }
 
+.csv-analysis-btn {
+  background: linear-gradient(45deg, #ff00ab, #00d8ff);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: -webkit-fill-available;
+  max-width: 320px;
+  margin: 20px auto;
+}
+
+.csv-analysis-btn:hover {
+  background: linear-gradient(45deg, #ff0080, #00bfff);
+  transform: translateY(-2px);
+}
+
+.analysis-result {
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border: 2px solid #00d8ff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.analysis-result h3 {
+  color: #00d8ff;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.analysis-result p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.analysis-result pre {
+  background-color: #1e1e1e;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  overflow-x: auto;
+}
+
+.csv-analyzer button {
+  background: linear-gradient(45deg, #ff00ab, #00d8ff);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: -webkit-fill-available;
+  max-width: 320px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.csv-analyzer button:hover {
+  background: linear-gradient(45deg, #ff0080, #00bfff);
+  transform: translateY(-2px);
+}
+
+.csv-analyzer button:focus {
+  outline: none;
+}
+
+.csv-analyzer button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 768px) {
   .menu-toggle-btn {
     width: 30px;
