@@ -2,46 +2,41 @@ import React, { useState } from 'react';
 
 function CsvAnalyzer({ data }) {
   const [analysis, setAnalysis] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const analyzeCsv = async () => {
-    setLoading(true);
+  const analyzeCsv = () => {
+    const numericColumns = ['GPS Speed(km/h)', 'Engine RPM(rpm)', 'Intake Air Temperature(°F)'];
+    const results = {};
 
-    try {
-      const prompt = `Analyze the following CSV data for potential issues in a vehicle's performance:\n${JSON.stringify(data)}`;
-      const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-      const response = await fetch('https://api.openai.com/v1/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ` + apiKey, // Substitua pela sua chave de API
-        },
-        body: JSON.stringify({
-          model: "davinci-002", // Use GPT-3.5
-          prompt: prompt,
-          max_tokens: 150,
-        }),
-      });
+    numericColumns.forEach(column => {
+      const values = data.map(row => parseFloat(row[column])).filter(val => !isNaN(val));
+      const avg = values.reduce((sum, val) => sum + val, 0) / values.length;
+      const max = Math.max(...values);
+      const min = Math.min(...values);
 
-      const result = await response.json();
-      setAnalysis(result.choices[0].text.trim());
-    } catch (error) {
-      console.error('Error analyzing CSV:', error);
-      setAnalysis('Failed to analyze CSV.');
-    } finally {
-      setLoading(false);
-    }
+      results[column] = {
+        average: avg.toFixed(2),
+        max: max.toFixed(2),
+        min: min.toFixed(2)
+      };
+    });
+
+    setAnalysis(results);
   };
 
   return (
     <div className="csv-analyzer">
-      <button onClick={analyzeCsv} disabled={loading}>
-        {loading ? 'Analyzing...' : 'Analyze CSV'}
-      </button>
+      <button onClick={analyzeCsv}>Analisar CSV</button>
       {analysis && (
         <div className="analysis-result">
-          <h3>Analysis Result</h3>
-          <p>{analysis}</p>
+          <h3>Resultado da Análise</h3>
+          {Object.entries(analysis).map(([column, stats]) => (
+            <div key={column}>
+              <h4>{column}</h4>
+              <p>Média: {stats.average}</p>
+              <p>Máximo: {stats.max}</p>
+              <p>Mínimo: {stats.min}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>
